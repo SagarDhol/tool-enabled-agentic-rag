@@ -235,35 +235,117 @@ def planner_node(state: AgentState):
 
 def tool_executor_node(state: AgentState):
     """
-    Executes tool calls from the last message.
+    Executes tool calls with comprehensive safety checks.
+    Implements strict validation and prevents unsafe operations.
     """
     print("--- ENTERING TOOL EXECUTOR ---")
+    
+    # Check for previous safety violations
+    if any(msg.tool_calls and msg.tool_calls[0]["name"] == "safety_fallback_tool" 
+           for msg in state["messages"] if hasattr(msg, 'tool_calls')):
+        return {
+            "messages": [AIMessage(
+                content="",
+                tool_calls=[{
+                    "name": "safety_fallback_tool",
+                    "args": {
+                        "error_message": "Previous safety violation detected. Further execution blocked."
+                    },
+                    "id": "safety_block_chain"
+                }]
+            )]
+        }
+    
     last_message = state["messages"][-1]
     tool_outputs = []
     
+    # Validate message has tool calls
+    if not hasattr(last_message, 'tool_calls') or not last_message.tool_calls:
+        return {
+            "messages": [AIMessage(
+                content="",
+                tool_calls=[{
+                    "name": "safety_fallback_tool",
+                    "args": {
+                        "error_message": "No valid tool calls found in the message."
+                    },
+                    "id": "safety_no_tool_calls"
+                }]
+            )]
+        }
+    
     for tool_call in last_message.tool_calls:
-        tool_name = tool_call["name"]
-        args = tool_call["args"]
-        print(f"\n--- Executing Tool: {tool_name} ---")
-        print(f"Executing tool: {tool_name} with args: {args}")
-        
-        # Dispatch to the correct tool function
-        if tool_name == "retrieval_tool":
-            result = retrieval_tool.invoke(args)
-        elif tool_name == "reasoning_tool":
-            result = reasoning_tool.invoke(args)
-        elif tool_name == "calculator_tool":
-            result = calculator_tool.invoke(args)
-        elif tool_name == "safety_fallback_tool":
-            result = safety_fallback_tool.invoke(args)
-        else:
-            result = f"Error: Tool {tool_name} not found."
+        if not isinstance(tool_call, dict) or "name" not in tool_call:
+            tool_outputs.append(ToolMessage(
+                tool_call_id=tool_call.get("id", "unknown"),
+                content="ERROR: Invalid tool call format"
+            ))
+            continue
             
-        tool_outputs.append(ToolMessage(
-            tool_call_id=tool_call["id"],
-            content=result
-        ))
+        tool_name = tool_call["name"]
+        args = tool_call.get("args", {})
         
+        # Input validation
+        if not isinstance(args, dict):
+            return {
+                "messages": [AIMessage(
+                    content="",
+                    tool_calls=[{
+                        "name": "safety_fallback_tool",
+                        "args": {
+                            "error_message": f"Invalid arguments for tool {tool_name}. Expected dictionary, got {type(args).__name__}."
+                        },
+                        "id": f"safety_invalid_args_{tool_name}"
+                    }]
+                )]
+            }
+        
+        # Tool whitelist
+        valid_tools = {"retrieval_tool", "reasoning_tool", "calculator_tool", "safety_fallback_tool"}
+        if tool_name not in valid_tools:
+            return {
+                "messages": [AIMessage(
+                    content="",
+                    tool_calls=[{
+                        "name": "safety_fallback_tool",
+                        "args": {
+                            "error_message": f"Tool '{tool_name}' is not allowed."
+                        },
+                        "id": f"safety_invalid_tool_{tool_name}"
+                    }]
+                )]
+            }
+        
+        try:
+            # Execute the tool with proper error handling
+            print(f"\n--- Executing Tool: {tool_name} ---")
+            result = globals()[tool_name].invoke(args)
+            
+            # Ensure the result is a string
+            if not isinstance(result, str):
+                result = str(result)
+                
+            tool_outputs.append(ToolMessage(
+                tool_call_id=tool_call.get("id", "unknown"),
+                content=result
+            ))
+            
+        except Exception as e:
+            error_msg = f"Error executing {tool_name}: {str(e)}"
+            print(f"Tool execution error: {error_msg}")
+            return {
+                "messages": [AIMessage(
+                    content="",
+                    tool_calls=[{
+                        "name": "safety_fallback_tool",
+                        "args": {
+                            "error_message": error_msg
+                        },
+                        "id": f"safety_exec_error_{tool_name}"
+                    }]
+                )]
+            }
+    
     return {"messages": tool_outputs}
 
 def evaluator_node(state: AgentState):

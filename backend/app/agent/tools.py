@@ -53,9 +53,11 @@ def calculator_tool(expression: str) -> str:
 @tool
 def safety_fallback_tool(error_message: str) -> str:
     """
-    Handles tool failures or empty results gracefully.
+    Terminal safety handler that immediately stops further tool execution.
+    This is called when a request cannot be processed safely.
     """
-    return f"Providing safe fallback due to: {error_message}. I cannot provide a reliable answer at this time."
+    # This is a terminal state - no further tool calls should be made after this
+    return f"SAFETY VIOLATION: {error_message} This conversation cannot proceed further due to safety constraints."
 
 # List of tools to be used by the agent
 tools = [retrieval_tool, reasoning_tool, calculator_tool, safety_fallback_tool]

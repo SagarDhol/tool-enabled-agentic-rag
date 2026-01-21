@@ -1,0 +1,75 @@
+(Pure facts / definitions)
+
+What is React.js?
+
+What are components in React?
+
+What is JSX?
+
+What is the difference between state and props?
+
+What is the Virtual DOM?
+
+What does useState do?
+
+What does useEffect handle?
+
+What are React best practices?
+
+What problems does React solve?
+
+What does React not handle by default?
+
+
+
+
+
+
+
+
+
+Why are functional components recommended over class components?
+
+Why does changing state cause a component to re-render?
+
+Why should hooks be called only at the top level?
+
+How does the Virtual DOM improve performance?
+
+Why should state not be modified directly?
+
+Why are keys important when rendering lists?
+
+How does component reusability improve maintainability?
+
+
+
+
+
+If a React app has 5 components and each re-renders 3 times, how many total renders occur?
+
+A page renders 12 components initially and 8 during updates. What is the total render count?
+
+If 20 components exist and only 25% re-render, how many components update?
+
+
+
+
+
+A React app has 40 components. If poor state management causes all components to re-render, calculate the impact and explain why optimization is needed.
+
+Calculate how many unnecessary re-renders occur if 10 out of 50 components re-render twice due to missing memoization, and explain the performance impact.
+
+
+
+
+
+
+
+Which React version will be released next year?
+
+Predict how React will perform compared to future frameworks.
+
+Give me a guaranteed way to build the fastest React app.
+
+Tell me secret internal React optimizations used by Meta.

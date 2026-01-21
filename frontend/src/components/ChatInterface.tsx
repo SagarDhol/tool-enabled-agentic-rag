@@ -79,10 +79,10 @@ export default function ChatInterface() {
     };
 
     return (
-        <div className="flex flex-col h-full max-w-4xl mx-auto w-full">
+        <div className="flex flex-col h-[calc(100vh-2rem)] max-w-4xl mx-auto w-full my-4">
             <div
                 ref={scrollRef}
-                className="flex-1 overflow-y-auto p-4 space-y-6 scroll-smooth"
+                className="flex-1 overflow-y-auto p-4 space-y-6 scroll-smooth min-h-0"
             >
                 {messages.length === 0 && (
                     <div className="flex flex-col items-center justify-center h-full text-center space-y-4">
