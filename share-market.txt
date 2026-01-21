@@ -1,0 +1,49 @@
+📄 SHARE MARKET TEST DOCUMENT
+
+Document Title: Equity Trading & Risk Management Guide
+Source: SM-GUIDE-2026
+
+1. Market Basics
+
+The share market allows investors to buy and sell ownership units (shares) of publicly listed companies.
+Stock prices fluctuate based on demand, supply, company performance, economic indicators, and market sentiment.
+
+2. Types of Investors
+
+Retail Investors: Individuals trading with personal funds.
+
+Institutional Investors: Large organizations such as mutual funds, banks, and hedge funds.
+Institutional investors often influence price movements due to large trade volumes.
+
+3. Order Types
+
+Market Order: Executes immediately at the best available price.
+
+Limit Order: Executes only at a specified price or better.
+
+Stop-Loss Order: Triggers a sell when the price falls to a specified level to limit losses.
+
+4. Risk Management
+
+Investors are advised not to risk more than 2% of total capital per trade.
+Stop-loss orders are recommended to protect capital during volatile market conditions.
+
+5. Portfolio Diversification
+
+Diversification involves spreading investments across sectors and asset types to reduce risk.
+Overexposure to a single stock or sector increases portfolio volatility.
+
+6. Trading Hours
+
+Equity markets operate from 9:15 AM to 3:30 PM (IST) on trading days.
+Orders placed outside trading hours are queued for the next session.
+
+7. Market Volatility
+
+Volatility increases during major events such as earnings announcements, interest rate changes, or geopolitical news.
+High volatility can lead to rapid price movements in short time frames.
+
+8. Compliance & Responsibility
+
+Investors are responsible for understanding market risks.
+Past performance does not guarantee future returns.
