@@ -1,0 +1,16 @@
+TechFlow Inc. Employee Handbook - Summary
+
+1. Work Hours and Remote Work
+TechFlow Inc. operates on a flexible 40-hour work week. Employees are required to be online during core hours (10:00 AM to 3:00 PM EST). We offer a "Remote-First" policy, allowing employees to work from anywhere within their country of residence.
+
+2. Vacation and Leave
+All full-time employees are entitled to 25 days of Paid Time Off (PTO) per calendar year. Additionally, TechFlow provides a mandatory "Unplug Week" in July where the entire company shuts down to prevent burnout.
+
+3. Health and Wellness
+Employees receive a monthly wellness stipend of $100, which can be used for gym memberships, mental health apps, or ergonomic office equipment.
+
+4. Performance Reviews
+Performance reviews occur bi-annually in January and July. We use a peer-feedback system combined with manager assessments to determine annual bonuses and promotion eligibility.
+
+5. Security and Compliance
+Internal project documents must be stored in the encrypted cloud drive. Use of public AI tools with confidential company code is strictly prohibited.
