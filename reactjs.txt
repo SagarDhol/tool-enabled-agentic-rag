@@ -1,76 +1,7 @@
-📄 REACT.JS TEST DOCUMENT
+What is React.js according to the document?
 
-Document Title: React.js Fundamentals & Best Practices
-Source: REACT-GUIDE-2026
 
-1. What is React.js
+Why should hooks be called at the top level?
 
-React.js is a JavaScript library used for building user interfaces, especially single-page applications.
-It allows developers to create reusable UI components and efficiently update the UI when data changes.
 
-2. Components
-
-React applications are built using components.
-Components can be:
-
-Functional Components (recommended)
-
-Class Components (legacy)
-
-Components return JSX and can receive data via props.
-
-3. JSX
-
-JSX is a syntax extension for JavaScript that allows writing HTML-like code inside JavaScript.
-JSX improves readability but is compiled to JavaScript before execution.
-
-4. State and Props
-
-Props are read-only inputs passed from parent to child components.
-
-State is mutable data managed within a component.
-State changes trigger component re-rendering.
-
-5. Hooks
-
-Hooks allow functional components to use React features.
-Common hooks include:
-
-useState – for state management
-
-useEffect – for handling side effects
-
-useContext – for sharing data across components
-
-Hooks must be called at the top level of components.
-
-6. Virtual DOM
-
-React uses a Virtual DOM to optimize UI updates.
-When state changes, React compares the new Virtual DOM with the previous one and updates only the changed parts in the real DOM.
-
-7. Performance Optimization
-
-Performance can be improved using:
-
-React.memo
-
-useCallback
-
-useMemo
-Avoid unnecessary re-renders to keep applications fast.
-
-8. Best Practices
-
-Keep components small and reusable
-
-Avoid modifying state directly
-
-Use keys when rendering lists
-
-Separate logic and presentation
-
-9. Responsibility & Limitations
-
-React manages the UI layer only.
-It does not handle routing, state management, or API calls by default—external libraries are often required.
+4 + 3

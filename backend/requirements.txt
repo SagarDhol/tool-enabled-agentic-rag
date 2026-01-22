@@ -2,7 +2,6 @@ fastapi
 uvicorn
 langchain
 langchain-openai
-langgraph
 faiss-cpu
 pydantic
 pydantic-settings
