@@ -1,0 +1,85 @@
+# Workflow and Tool Selection Process
+
+## 1. System Overview
+
+The backend is built using a LangGraph-based architecture with the following key components:
+- `graph.py`: Main workflow definition and state management
+- `tools.py`: Tool definitions and implementations
+- `state.py`: State management for the agent
+- `prompts.py`: System prompts and instructions
+
+## 2. Workflow Decision Process
+
+The system follows these steps to determine which tools to use and how to route requests:
+
+### 2.1 Initial Request Processing
+1. User query is received through the FastAPI endpoint in `main.py`
+2. The request is processed by the agent workflow defined in `graph.py`
+3. The system evaluates the query against available tools and routes accordingly
+
+### 2.2 Tool Selection Logic
+Tools are selected based on:
+- The nature of the user's query
+- The current state of the conversation
+- The available tools and their capabilities
+
+## 3. Example Workflows
+
+### Example 1: Document Search and Retrieval
+
+1. **User Query**: "Find information about machine learning"
+2. **Process**:
+   - System identifies the need for document retrieval
+   - Routes to the retrieval tool
+   - Processes results and formats the response
+
+### Example 2: Data Analysis
+
+1. **User Query**: "Analyze the sales data for Q2"
+2. **Process**:
+   - System identifies the need for data analysis
+   - Determines the appropriate analysis tools
+   - Processes the data and returns insights
+
+### Example 3: Multi-step Task
+
+1. **User Query**: "Find research papers about AI and summarize the key points"
+2. **Process**:
+   - System breaks this into subtasks:
+     1. Search for relevant papers
+     2. Extract key information
+     3. Generate summary
+   - Routes through appropriate tools for each step
+
+## 4. Tool Implementation Details
+
+### 4.1 Tool Registration
+Tools are registered in the system through the `@tool` decorator in `tools.py`
+
+### 4.2 State Management
+The state is managed through the `State` class in `state.py`, which tracks:
+- Conversation history
+- Current context
+- Tool outputs
+
+## 5. Error Handling and Fallbacks
+
+The system includes robust error handling:
+- Invalid tool requests are caught and handled gracefully
+- Fallback mechanisms are in place when tools are unavailable
+- Clear error messages are returned to the user
+
+## 6. Extending the System
+
+To add new tools:
+1. Define the tool function in `tools.py`
+2. Add appropriate error handling
+3. Update the system prompt if needed
+4. Test the new tool thoroughly
+
+## 7. Best Practices
+
+- Keep tool functions focused and single-purpose
+- Implement comprehensive error handling
+- Document tool behavior and requirements
+- Monitor tool usage and performance
